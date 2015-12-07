@@ -1,0 +1,32 @@
+﻿<Window x:Class="DirectorySerialSearcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Directory Serial Number Searcher" Height="400" Width="860" ContentRendered="Window_ContentRendered_1">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="419*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Name="txtInput" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="282" TextChanged="txtInput_TextChanged"/>
+        <ProgressBar IsIndeterminate="True" Name="progressBar" Height="17" Margin="10,0,10,5" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <ListView Name="lstDisplayedComputers" ItemsSource="{Binding}" Background="{x:Null}" Margin="10,41,10,27" Grid.ColumnSpan="2" SourceUpdated="lstDisplayedComputers_SourceUpdated">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="200" Header="Computer Name" DisplayMemberBinding="{Binding Path=name}" />
+                    <GridViewColumn Width="250" TextElement.FontFamily="Courier New" Header="Model" DisplayMemberBinding="{Binding Path=Model}" />
+                    <GridViewColumn Width="250" TextElement.FontFamily="Courier New" Header="Serial" DisplayMemberBinding="{Binding Path=SerialNumber}" />
+                    <GridViewColumn Width="250" TextElement.FontFamily="Courier New" Header="NetBootGUID" DisplayMemberBinding="{Binding Path=netbootGUID}" />
+                    <GridViewColumn Width="700" Header="Distinguished Name" DisplayMemberBinding="{Binding Path=DN}" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Name="lblVersion" Content="Version" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="184" HorizontalContentAlignment="Right" Foreground="Gray" Grid.ColumnSpan="2"/>
+        <Label Name="statusBar" Content="Status Bar" Margin="10,0,10,4" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="17" FontSize="10" Padding="0"/>
+    </Grid>
+</Window>
