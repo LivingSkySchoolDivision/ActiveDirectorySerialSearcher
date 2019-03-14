@@ -32,7 +32,6 @@ namespace DirectorySerialSearcher
         {
             List<ADComputer> returnMe = new List<ADComputer>();
 
-            //DirectoryEntry searchRoot = new DirectoryEntry("LDAP://OU=School_Computers,DC=lskysd,DC=ca");
             DirectoryEntry searchRoot = new DirectoryEntry();
             DirectorySearcher searcher = new DirectorySearcher(searchRoot);
             searcher.Filter = "(objectClass=computer)";
@@ -138,10 +137,7 @@ namespace DirectorySerialSearcher
                 allComputers = getAllComputers();
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, (myDelegate)delegate()
                 {
-                    //displayedComputers = allComputers;
                     enableContols();
-                    //lstDisplayedComputers.Items.SortDescriptions.Add(new SortDescription("sAMAccountName", ListSortDirection.Ascending));
-                    //lstDisplayedComputers.DataContext = displayedComputers;
                     displayTheseComputers(allComputers, "");
                     statusBar.Content = "Loaded " + allComputers.Count + " computer objects";
                 });
@@ -151,7 +147,6 @@ namespace DirectorySerialSearcher
 
         private void Window_ContentRendered_1(object sender, EventArgs e)
         {
-            /* Initialize some lists */
             allComputers = new List<ADComputer>();
             displayedComputers = new List<ADComputer>();
 
